@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -90,16 +91,14 @@
         dateClick: function (info) {
           const nome = prompt("Seu nome para o agendamento em " + info.dateStr + ":");
           if (nome) {
-            // Adiciona visualmente no calendário (opcional)
             calendar.addEvent({
               title: "Agendado: " + nome,
               start: info.dateStr,
               allDay: true
             });
 
-            // Redireciona para o WhatsApp com a mensagem pronta
             const mensagem = `Olá, gostaria de agendar um corte no dia ${info.dateStr}. Meu nome é ${nome}.`;
-            const numero = "5511952790615"; // WhatsApp com DDI +55 e DDD 11
+            const numero = "5511952790615";
             const link = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
             window.open(link, "_blank");
           }
