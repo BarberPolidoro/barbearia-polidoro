@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Barbearia Polidoro</title>
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.7/main.min.css" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    header {
+      background-color: #111;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    #calendar {
+      max-width: 700px;
+      margin: 40px auto;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 15px;
+    }
+
+    footer {
+      background-color: #111;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+      margin-top: 50px;
+    }
+
+    .contact {
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    a {
+      color: #00aaff;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Barbearia Polidoro</h1>
+    <p>Rua Síria, 574 – Corte na régua e estilo no ponto</p>
+  </header>
+
+  <div class="container">
+    <h2>Agende seu horário</h2>
+    <div id="calendar"></div>
+
+    <div class="contact">
+      <p><strong>Telefone:</strong> <a href="tel:+5511952790615">(11) 95279-0615</a></p>
+      <p><strong>Instagram:</strong> <a href="https://instagram.com/Barber_Polidoro" target="_blank">@Barber_Polidoro</a></p>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Barbearia Polidoro
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.7/main.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var calendarEl = document.getElementById('calendar');
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        selectable: true,
+        dateClick: function (info) {
+          const nome = prompt("Seu nome para o agendamento em " + info.dateStr + ":");
+          if (nome) {
+            // Adiciona visualmente no calendário (opcional)
+            calendar.addEvent({
+              title: "Agendado: " + nome,
+              start: info.dateStr,
+              allDay: true
+            });
+
+            // Redireciona para o WhatsApp com a mensagem pronta
+            const mensagem = `Olá, gostaria de agendar um corte no dia ${info.dateStr}. Meu nome é ${nome}.`;
+            const numero = "5511952790615"; // WhatsApp com DDI +55 e DDD 11
+            const link = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+            window.open(link, "_blank");
+          }
+        }
+      });
+      calendar.render();
+    });
+  </script>
+</body>
+</html>
